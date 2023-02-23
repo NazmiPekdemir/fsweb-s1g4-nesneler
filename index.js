@@ -15,8 +15,8 @@ const serpmeKahvalti = {isim: "Serpme Kahvaltı", fiyat: 16, kategori:"Kahvaltı
 */
 
 
-function MenuElemaniOlustur(/*Kodlar buraya*/){
-	/*Kodlar buraya*/
+function MenuElemaniOlustur(){
+	
 }
 
 
@@ -29,7 +29,10 @@ function MenuElemaniOlustur(/*Kodlar buraya*/){
 	3. Tüm döndürülen sonuçları konsolda gözlemleyin (console.log)
 	
 	Örnek: MenuElemaniOlustur("Karışık Pizza",5,"Pizzalar") şunu döndürür: {isim:"Karışık Pizza",fiyat:5,kategori:"Pizzalar"}
+
 */
+
+
 
 
 
@@ -47,10 +50,20 @@ function MenuElemaniOlustur(/*Kodlar buraya*/){
 
 
 const burger = {
-	isim: "Burger", 
-	fiyat: 18, 
-	kategori: "Öğle Yemeği", 
+    isim: "Burger", 
+    fiyat: 18, 
+    kategori: "Öğle Yemeği", 
 
+    indirim: function(person){
+        if (person === 'öğretmen'){
+            return this.fiyat*0.75 
+        } else if (person === 'öğrenci'){
+            return this.fiyat*0.75 
+        } else if (person === 'diğer'){
+            return this.fiyat*0.90 
+        }
+
+    } 
 }
 
 
@@ -94,8 +107,9 @@ const degerlendirmeler = [
 */
 
 
-function DegerledirmeEkle(/*Kodlar buraya */){
-	/*Kodlar buraya */
+function DegerledirmeEkle(degerlendirmeDizi, name, point, backup){
+		let newObj = {};
+		
 	
 }
 
