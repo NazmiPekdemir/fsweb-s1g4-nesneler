@@ -15,8 +15,15 @@ const serpmeKahvalti = {isim: "Serpme Kahvaltı", fiyat: 16, kategori:"Kahvaltı
 */
 
 
-function MenuElemaniOlustur(){
+function MenuElemaniOlustur(name, price, category){
 	
+	let menuElemani = {
+		isim: name,
+		fiyat: price,
+		kategori: category,
+	}
+	
+	return menuElemani;
 }
 
 
@@ -31,7 +38,7 @@ function MenuElemaniOlustur(){
 	Örnek: MenuElemaniOlustur("Karışık Pizza",5,"Pizzalar") şunu döndürür: {isim:"Karışık Pizza",fiyat:5,kategori:"Pizzalar"}
 
 */
-
+console.log(MenuElemaniOlustur("Adana Dürüm", 45 , "Dürümler"));
 
 
 
@@ -85,6 +92,7 @@ const degerlendirmeler = [
 	1. Sadece Ahmet'in geribildirimini konsolda görüntüleyin - fonksiyona gerek yok
 */
 
+console.log(degerlendirmeler[degerlendirmeler.findIndex( x => x.isim === "Ahmet")].geribildirim);
 
 
 /*  Görev 4 (ototest yok):  
@@ -93,6 +101,9 @@ const degerlendirmeler = [
 	2. degerlendirmeler dizisini konsolda görüntüleyerek çalışmanızı kontrol edin
 */
 
+
+degerlendirmeler[degerlendirmeler.findIndex( x => x.isim === "Reyna")].geribildirim = "bu mekan bir harika dostum, yine de garsonun gülümsememesinden puan kırdım" ;
+console.log(degerlendirmeler[degerlendirmeler.findIndex( x => x.isim === "Reyna")].geribildirim );
 
 
 /*  Görev 5: 
@@ -107,10 +118,17 @@ const degerlendirmeler = [
 */
 
 
-function DegerledirmeEkle(degerlendirmeDizi, name, point, backup){
-		let newObj = {};
+function DegerledirmeEkle(degerlendirmeDizi, name, point, feedback){
 		
+		let newObj = {
+			isim: name,
+			puan: point,
+			geribildirim: feedback
+		};
 	
+		degerlendirmeDizi.push(newObj);
+	
+		return degerlendirmeDizi;
 }
 
 
@@ -120,16 +138,31 @@ function DegerledirmeEkle(degerlendirmeDizi, name, point, backup){
 	
 	Aşağıdaki AnahtardanDegerlendirmeAl fonksiyonu kullanarak aşağıdakileri uygulayın:
 	1. Argüman olarak bir diziyi ilk parametresi olarak alacak
-	2. Dizinin kullanılmak istenen anahtarını ikinci parametre olarak alacak
+	2. Dizinin kullanılmak istenen anahtarını ikinci parametre olarak alacak<
 	3. Fonksiyon şu stringi döndürmeli: "{isim} isimli kişi {puan} puan verdi ve şunları yazdı: {geribildirim}"
 	Örnek: AnahtardanDegerlendirmeAl(degerlendirmeler,0) şunu döndürmeli: "Nalan isimli kişi 5 puan verdi ve şunları yazdı: Mükemmel atmosfer ve mükemmel vegan seçenekleri!"
 */
 
+// {isim: "Elif", puan: 4.5, geribildirim:"Evimden pek çıkmıyorum ama çıktığımda sadece buraya geliyorum. Şiddetle tavsiye ederim."},
 
-function AnahtardanDegerlendirmeAl(/*Kodlar buraya*/) {
-	/*Kodlar buraya*/
+function AnahtardanDegerlendirmeAl(newArray, kisi){
 
+	 return (newArray[kisi].isim + " isimli kişi " + newArray[kisi].puan + " puan verdi ve şunları yazdı: " + newArray[kisi].geribildirim)
 }
+
+
+
+/*function AnahtardanDegerlendirmeAl(newArray, kisi){
+	//for(let i = 0 ; i < newArray.length ; i++ ){console.log("İsimler " , newArray[i].isim)}
+
+	const elifdata = newArray[kisi];
+	
+	return `${elifdata.isim} isimli kişi ${elifdata.puan} puan verdi ve şunları yazdı: ${elifdata.geribildirim}`
+	//return elifdata.isim + " isimli kişi " + elifdata.puan + " puan verdi ve şunları yazdı: " + elifdata.geribildirim
+	
+	
+}
+console.log(AnahtardanDegerlendirmeAl(degerlendirmeler,3))*/
 
 
 
@@ -146,8 +179,8 @@ function AnahtardanDegerlendirmeAl(/*Kodlar buraya*/) {
 */
 
 
-function SonDegerlendirmeyiAl(/*Kodlar buraya*/) {
-	/*Kodlar buraya*/
+function SonDegerlendirmeyiAl(newArray) {
+	 return (newArray[newArray.length - 1].isim + " isimli kişi " + newArray[newArray.length - 1].puan + " puan verdi ve şunları yazdı: " + newArray[newArray.length - 1].geribildirim);
 } 
 
 
@@ -168,8 +201,15 @@ function SonDegerlendirmeyiAl(/*Kodlar buraya*/) {
 	]
 */
 
-function PuanaGoreDegerlendirmeAl(/* Kodlar buraya */) {
-    /* Kodlar buraya */
+function PuanaGoreDegerlendirmeAl(newArray, puan) {
+	
+	let yenidizi = [];
+	for(let i = 0; i<newArray.length; i++){
+		if(Math.floor(newArray[i].puan) === puan){
+			yenidizi.push(newArray[i]);
+		}
+	}
+    return yenidizi;
 }
 
 
@@ -180,8 +220,14 @@ function PuanaGoreDegerlendirmeAl(/* Kodlar buraya */) {
 	
 */
 
-function UzunDegerlendirmeleriAl(/* Kodlar buraya */) {
-    /* Kodlar buraya */
+function UzunDegerlendirmeleriAl(newArray) {
+	let yenizdizi = [];
+	for(let i = 0; i<newArray.length; i++){
+		if(newArray[i].geribildirim.split(" ").length > 15){
+			yenizdizi.push(newArray[i]);
+		}
+	}
+    return yenizdizi;
 }
 
 
@@ -202,11 +248,20 @@ function UzunDegerlendirmeleriAl(/* Kodlar buraya */) {
 	Bu 110 döndürmelidir çünkü başlangıç kilometre sayacını 10 olarak tanımladık ve 100 km arabayı sürdük.
 */
 
-
-function arabaYapici(/* Kodlar buraya */) {
-    /* Kodlar buraya */
+ 
+function arabaYapici(kmsayac) {
+     let newObj = {
+		sayac:kmsayac,
+		surusmetodu: function(km){
+			this.sayac = this.sayac + km;
+			return this.sayac;
+		}
+	 }
+	 return (newObj);
     
 }
+let araba1 = arabaYapici(10);
+console.log( "Arabanın kilometresi: " + araba1.surusmetodu(100));
 
 
 /*  Buradan aşağıdaki kodları değiştirmeyin lütfen */
