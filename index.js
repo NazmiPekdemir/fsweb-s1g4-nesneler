@@ -201,17 +201,17 @@ function SonDegerlendirmeyiAl(newArray) {
 	]
 */
 
-function PuanaGoreDegerlendirmeAl(newArray, puan) {
-	
+function PuanaGoreDegerlendirmeAl(newArray,point) {
 	let yenidizi = [];
-	for(let i = 0; i<newArray.length; i++){
-		if(Math.floor(newArray[i].puan) === puan){
+	for(let i = 0; i < newArray.length; i++){
+		if(point === Math.floor(newArray[i].puan)){
 			yenidizi.push(newArray[i]);
 		}
 	}
     return yenidizi;
 }
 
+console.log(PuanaGoreDegerlendirmeAl(degerlendirmeler,3));
 
 /*  BONUS 2:    
 	UzunDegerlendirmeleriAl fonksiyonuna aşağıdakileri uygulayın:
@@ -250,18 +250,18 @@ function UzunDegerlendirmeleriAl(newArray) {
 
  
 function arabaYapici(kmsayac) {
-     let newObj = {
-		sayac:kmsayac,
-		surusmetodu: function(km){
-			this.sayac = this.sayac + km;
-			return this.sayac;
+    const newObj = {
+		surusmetodu: function (km){
+			kmsayac = kmsayac + km;
+			return kmsayac;
 		}
-	 }
-	 return (newObj);
-    
+	}
+    return(newObj)								
 }
-let araba1 = arabaYapici(10);
-console.log( "Arabanın kilometresi: " + araba1.surusmetodu(100));
+const apaci = arabaYapici(200000);
+console.log(apaci.surusmetodu(100));
+console.log(arabaYapici(200).surusmetodu(5));
+console.log( "Arabanın kilometresi: " + apaci.surusmetodu(100));
 
 
 /*  Buradan aşağıdaki kodları değiştirmeyin lütfen */
